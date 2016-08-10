@@ -1,0 +1,251 @@
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.filter-names-btn {
+  background: transparent;
+  border-color: transparent;
+  outline: none;
+  border-bottom: 1px solid #e6e6e6;
+  width: 100%;
+  text-align: left;
+  font-weight: bold;
+  font-size: 1em;
+  margin-right: 0px;
+  padding-right: 0px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  padding-top: 10px;
+}
+
+.caret-floating {
+  float: right;
+  margin: 0 auto;
+}
+
+.add-fliter-btn {
+  margin-top: 12px;
+  padding-left: 10px;
+  font-size: 1em;
+  text-align: left;
+  font-weight: bold;
+  background: transparent;
+  border-color: transparent;
+  outline: none;
+}
+.dropdown-menu {
+
+}
+.dropdown-submenu>.dropdown-menu {
+    position: absolute;
+    left: 100%;
+    top: -50px;
+    z-index: -1;
+    width: 100%;
+    -webkit-border-radius: 0 6px 6px 6px;
+    -moz-border-radius: 0 6px 6px;
+    border-radius: 0 6px 6px 6px;
+}
+
+.submenu-header {
+  height: 50px;
+  background-color: #e6e6e6;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  margin-top: -5px;
+  font-size: 1em;
+  text-align: center;
+  font-weight: bold;
+}
+
+.submenu-input-container {
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 20px;
+}
+
+.submenu-input {
+  display: block;
+  border: transparent;
+  outline: none;
+  border-bottom: 3px solid #e6e6e6;
+  width: 80%;
+  font-weight: bold;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+
+.conditions-header {
+
+  margin-bottom: 10px;
+  font-size: 1em;
+}
+.conditions-header-container {
+  width: 80%;
+  margin-left: 20px;
+  margin-bottom: 15px;
+  font-size: 1.1em;
+}
+
+.second-conditions-header-container {
+  width: 80%;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-bottom: 15px;
+  font-size: 1.1em;
+}
+
+.second-conditions-values {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 20px;
+}
+
+.conditions-values {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 20px;
+}
+.conditions-values:hover {
+    background-color: #e6e6e6;
+}
+.second-conditions-values:hover {
+    background-color: #e6e6e6;
+}
+.conditions-delete-btn {
+  background: transparent;
+  border: transparent;
+  float: right;
+  margin-right: 30px;
+}
+
+.add-condition-btn {
+  background: transparent;
+  border: transparent;
+  outline: none;
+  font-weight: bold;
+  height: 50px;
+  margin-left: 15px;
+  font-size: 1em;
+}
+
+.conditions-divider {
+  margin-bottom: 10px;
+  font-size: 1em;
+  height: 100%;
+  border-top: solid 1px #e6e6e6;
+}
+
+.conditions-footer {
+  border-top: solid 1px #e6e6e6;
+  height: 100px;
+}
+
+.condtions-footer-btn {
+  float: right;
+  height: 50px;
+  margin-top: 20px;
+  margin-right: 20px;
+
+}
+
+.footer-btn {
+  background: transparent;
+  border: transparent;
+  outline: none;
+  font-size: 1em;
+}
+
+.properties-search-input {
+  display: block;
+  border: transparent;
+  outline: none;
+  border-bottom: 3px solid #e6e6e6;
+  width: 80%;
+  font-weight: bold;
+  color: black;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.properties-names {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 20px;
+  border-bottom: solid 1px #e6e6e6;
+}
+.properties-names:hover {
+  background-color: #e6e6e6;
+}
+.properties-names-btn {
+  width: 100%;
+  text-align: left;
+  outline: none;
+  background: transparent;
+  border: transparent;
+  font-weight: bold;
+}
+
+.properties-select {
+  margin-top: 15px;
+  width: 100%;
+  height: 25px;
+  text-align-last: center;
+  outline: none;
+  border: transparent;
+  border-bottom: solid 1px #e6e6e6;
+  background: transparent;
+}
+
+.properties-add-btn {
+  margin-top: 20px;
+  margin-bottom: 60px;
+  outline: none;
+  border: transparent;
+  background: transparent;
+  font-weight: bold;
+  float: right;
+}

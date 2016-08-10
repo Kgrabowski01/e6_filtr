@@ -1,0 +1,244 @@
+<div class="dropdown">
+  <a role="button" data-toggle="dropdown" class="btn btn-primary" data-target="#">
+    Filters: <span class="caret"></span>
+  </a>
+
+
+  <ul class="dropdown-menu multi-level col-md-5 col-lg-5" role="menu" aria-labelledby="dropdownMenu">
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <div ng-model="ctrl.tempConditionObj">
+      <form method="get">
+        <div ng-repeat="filter in ctrl.filters track by $index" ng-init="filterIndex = $index">
+          <!-- <div ng-switch on="ctrl.loadFilterDetail" ng-repeat="filter in ctrl.filters" ng-init="filterIndex = $index"> -->
+          <li class="dropdown-submenu">
+            <button class="filter-names-btn" tabindex="-1" type="button" ng-click="ctrl.changeView('loadFilterDetail', filter.name);ctrl.selectFilter(filter)">{{filter.name}}<span class="glyphicon glyphicon-menu-right caret-floating"></span></button>
+            <ul class="dropdown-menu" ng-if="filter.name == ctrl.tempConditionObj.name && ctrl.loadFilterDetail === true">
+              <li>          <!-- naglowek filtra -->
+                <p class="submenu-header">
+
+                  {{ctrl.tempConditionObj.name}}
+                </p>
+                <div class="submenu-input-container">
+                  <input type="text" class="submenu-input" placeholder="Edit filter name" ng-model="ctrl.filterOptions.filterName" ng-required="required"> <!-- ctrl.filterName -->
+                </div>
+              </li>   <!-- naglowek filtra -->
+              <!-- ................................................. -->
+              <li>
+                <div class="conditions-header">
+                  <div class="conditions-header-container">
+                    Meet <strong>All</strong> of the following conditions:
+                  </div>
+                  <div class="conditions-values" ng-if="ctrl.tempConditionObj.conditions.and.length > 0" ng-repeat="filters in ctrl.tempConditionObj.conditions.and">
+                    {{filters.property}} {{filters.operator}} <strong>{{filters.values[0]}}</strong>
+                    <button type="button" class="conditions-delete-btn glyphicon glyphicon-trash" ng-click="ctrl.deleteCondition('and', $index)"></button>
+                  </div>
+                </div>
+                <li ng-switch on="ctrl.viewFilterConditionsAll" class="dropdown-submenu">
+                  <button tabindex="-1" type="button" class="add-condition-btn" ng-click="ctrl.changeView('viewFilterConditionsAll')">Add condition</button>
+                  <ul ng-switch-when="true" class="dropdown-menu">
+                    <div class="submenu-header">
+                      Filter technicians by
+                    </div>
+                    <input type="text" class="properties-search-input" placeholder="Search properties" ng-model="ctrl.searchBox">
+                    <li ng-switch on="ctrl.filterAttr" ng-repeat = "condition in ctrl.conditions | filter: ctrl.searchBox" class="dropdown-submenu" >
+                      <div class="properties-names">
+                        <button tabindex="-1" class="properties-names-btn" type="button" ng-click="ctrl.showConditionAttrs(condition.name)">{{condition.name}}<span class="glyphicon glyphicon-menu-right caret-floating"></span></button>
+                      </div>
+                      <ul ng-if="ctrl.filterAttr == condition.name" class="dropdown-menu">
+                        <div class="submenu-header">
+                          {{condition.name}}
+                        </div>
+                        <select ng-if="condition.operators != undefined" class="properties-select" ng-model="ctrl.filterOptions[condition.name].operator" ng-options="o as o for o in condition.operators" required>
+                          <option value="">select condition</option>
+                        </select>
+                        <input type="number" ng-if="condition.name == 'Age'" class="properties-select" placeholder="Enter age" ng-model="ctrl.filterOptions[condition.name].value">
+                        <select ng-if="condition.values != undefined" class="properties-select" ng-model="ctrl.filterOptions[condition.name].value" ng-options="o as o for o in condition.values" required>
+                          <option value="">select value</option>
+                        </select>
+                        <button type="button" class="properties-add-btn" ng-click="ctrl.addCondition(condition.name, ctrl.filterOptions[condition.name], 'and')">Add condition</button>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </li>
+              <!-- ................................................. -->
+              <li>
+                <div class="conditions-divider">
+                  <div class="second-conditions-header-container">
+                    Meet <strong>AT LEAST ONE</strong> of the following conditions:
+                  </div>
+                  <div class="second-conditions-values" ng-if="ctrl.tempConditionObj.conditions.or.length > 0" ng-repeat="filters in ctrl.tempConditionObj.conditions.or track by $index">
+                    {{filters.property}} {{filters.operator}} <strong>{{filters.values[0]}}</strong>
+                    <button class="conditions-delete-btn glyphicon glyphicon-trash" type="button" ng-click="ctrl.deleteCondition('or', $index)"></button>
+                  </div>
+                </div>
+                <li ng-switch on="ctrl.viewFilterConditionsAny" class="dropdown-submenu">
+                  <button tabindex="-1" type="button" class="add-condition-btn" ng-click="ctrl.changeView('viewFilterConditionsAny')">Add condition</button>
+                  <ul ng-switch-when="true" class="dropdown-menu">
+                    <div class="submenu-header">
+                      Filter technicians by
+                    </div>
+                    <input type="text" class="properties-search-input" placeholder="Search properties" ng-model="ctrl.searchBox">
+                    <li ng-switch on="ctrl.filterAttr" ng-repeat = "condition in ctrl.conditions | filter: ctrl.searchBox" class="dropdown-submenu" >
+                      <div class="properties-names">
+                        <button tabindex="-1" class="properties-names-btn" type="button" ng-click="ctrl.showConditionAttrs(condition.name)">{{condition.name}}<span class="glyphicon glyphicon-menu-right caret-floating"></span></button>
+                      </div>
+                      <ul ng-if="ctrl.filterAttr == condition.name" class="dropdown-menu">
+                        <div class="submenu-header">
+                          {{condition.name}}
+                        </div>
+                        <select ng-if="condition.operators != undefined" class="properties-select" ng-model="ctrl.filterOptions[condition.name].operator" ng-options="o as o for o in condition.operators" required>
+                          <option value="">select condition</option>
+                        </select>
+                        <input type="number" ng-if="condition.name == 'Age'" class="properties-select" placeholder="Enter age" ng-model="ctrl.filterOptions[condition.name].value">
+                        <select ng-if="condition.values != undefined" class="properties-select" ng-model="ctrl.filterOptions[condition.name].value" ng-options="o as o for o in condition.values" required>
+                          <option value="">select value</option>
+                        </select>
+                        <button type="button" class="properties-add-btn" ng-click="ctrl.addCondition(condition.name, ctrl.filterOptions[condition.name], 'or')">Add condition</button>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </li>
+              <!-- ................................................. -->
+              <li>
+                <div class="conditions-footer">
+                  <div class="condtions-footer-btn">
+                    <button type="button" class="footer-btn" data-ng-click="ctrl.onEdit({filterIndex: filterIndex, newConditions: ctrl.tempConditionObj, newFilterName: ctrl.filterOptions.filterName});ctrl.clearFilters()"><strong>Save filter</strong></button>
+                    <button type="button" class="footer-btn" data-ng-click="ctrl.cloneFilter({filterIndex: filterIndex})">Clone this filter</button>
+                  </div>
+                </div>
+              </li>
+
+              <!-- ................................................. -->
+
+
+            </ul>
+          </li>
+        </div>
+      </form>
+    </div>
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+
+    <div ng-model="ctrl.viewFilterDetail">
+
+      <form method="get" ng-model="ctrl.filterOptions">
+
+        <div ng-switch on="ctrl.viewFilterDetail">
+          <li class="dropdown-submenu">
+            <button class="add-fliter-btn"tabindex="-1" type="button" ng-click="ctrl.clearAndChangeAddView()">Add Filter</button>
+            <!-- ng-click="ctrl.clearFilters();ctrl.changeView('viewFilterDetail')">Add Filter</button> -->
+            <ul class="dropdown-menu" ng-if="ctrl.viewFilterDetail === true">
+              <!-- <ul class="dropdown-menu" ng-if="ctrl.viewFilterDetail === true && ctrl.loadFilterDetail === false"> -->
+              <!-- <ul class="dropdown-menu" ng-switch-when="true"> -->
+              <li>          <!-- naglowek filtra -->
+                <p class="submenu-header">
+                  {{ctrl.filterOptions.filterName}}
+                </p>
+                <div class="submenu-input-container">
+                  <input type="text" class="submenu-input" placeholder="Filter name" ng-model="ctrl.filterOptions.filterName" ng-required="true"> <!-- ctrl.filterName -->
+                </div>
+              </li>   <!-- naglowek filtra -->
+              <!-- ................................................. -->
+              <li>
+                <div class="conditions-header">
+                  <div class="conditions-header-container">
+                    Meet <strong>All</strong> of the following conditions:
+                  </div>
+                  <div class="conditions-values" ng-if="ctrl.tempConditionObj.conditions.and.length > 0" ng-repeat = "filters in ctrl.tempConditionObj.conditions.and track by $index">
+                    {{filters.property}} {{filters.operator}} <strong>{{filters.values[0]}}</strong>
+                    <button type="button" class="conditions-delete-btn glyphicon glyphicon-trash" ng-click="ctrl.deleteCondition('and', $index)"></button>
+                  </div>
+                </div>
+                <li ng-switch on="ctrl.viewFilterConditionsAll" class="dropdown-submenu">
+                  <button tabindex="-1" type="button" class="add-condition-btn" ng-click="ctrl.changeView('viewFilterConditionsAll')">Add condition</button>
+                  <ul ng-switch-when="true" class="dropdown-menu">
+                    <div class="submenu-header">
+                      Filter technicians by
+                    </div>
+                    <input type="text" class="properties-search-input" placeholder="Search properties" ng-model="ctrl.searchBox">
+                    <li ng-switch on="ctrl.filterAttr" ng-repeat = "condition in ctrl.conditions | filter: ctrl.searchBox" class="dropdown-submenu" >
+                      <div class="properties-names">
+                        <button tabindex="-1" class="properties-names-btn" type="button" ng-click="ctrl.showConditionAttrs(condition.name)">{{condition.name}}<span class="glyphicon glyphicon-menu-right caret-floating"></button>
+                        </div>
+                        <ul ng-if="ctrl.filterAttr == condition.name" class="dropdown-menu">
+                          <div class="submenu-header">
+                            {{condition.name}}
+                          </div>
+                          <select ng-if="condition.operators != undefined" class="properties-select" ng-model="ctrl.filterOptions[condition.name].operator" ng-options="o as o for o in condition.operators" required>
+                            <option value="">select condition</option>
+                          </select>
+                          <input type="number" ng-if="condition.name == 'Age'" placeholder="Enter age" class="properties-select" ng-model="ctrl.filterOptions[condition.name].value">
+                          <select ng-if="condition.values != undefined" class="properties-select" ng-model="ctrl.filterOptions[condition.name].value" ng-options="o as o for o in condition.values" required>
+                            <option value="">select value</option>
+                          </select>
+                          <button type="button" class="properties-add-btn" ng-click="ctrl.addCondition(condition.name, ctrl.filterOptions[condition.name], 'and')">Add condition</button>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </li>
+                <!-- ................................................. -->
+                <li>
+                  <div class="conditions-divider">
+                    <div class="second-conditions-header-container">
+                      Meet <strong>AT LEAST ONE</strong> of the following conditions:
+                    </div>
+                    <div class="second-conditions-values"ng-if="ctrl.tempConditionObj.conditions.or.length > 0" ng-repeat = "filters in ctrl.tempConditionObj.conditions.or track by $index">
+                      {{filters.property}} {{filters.operator}} <strong>{{filters.values[0]}}</strong>
+                      <button type="button" class="conditions-delete-btn glyphicon glyphicon-trash" ng-click="ctrl.deleteCondition('or', $index)"></button>
+                    </div>
+                  </div>
+                  <li ng-switch on="ctrl.viewFilterConditionsAny" class="dropdown-submenu">
+                    <button tabindex="-1" class="add-condition-btn" type="button" ng-click="ctrl.changeView('viewFilterConditionsAny')">Add condition</button>
+
+                    <ul ng-switch-when="true" class="dropdown-menu">
+                      <div class="submenu-header">
+                        Filter technicians by
+                      </div>
+                      <input type="text" class="properties-search-input" placeholder="Search properties" ng-model="ctrl.searchBox">
+                      <li ng-switch on="ctrl.filterAttr" ng-repeat = "condition in ctrl.conditions | filter: ctrl.searchBox" class="dropdown-submenu" >
+                        <div class="properties-names">
+                          <button tabindex="-1" class="properties-names-btn" type="button" ng-click="ctrl.showConditionAttrs(condition.name)">{{condition.name}}<span class="glyphicon glyphicon-menu-right caret-floating"></button>
+                          </div>
+                          <ul ng-if="ctrl.filterAttr == condition.name" class="dropdown-menu">
+                            <div class="submenu-header">
+                              {{condition.name}}
+                            </div>
+                            <select ng-if="condition.operators != undefined" class="properties-select" ng-model="ctrl.filterOptions[condition.name].operator" ng-options="o as o for o in condition.operators">
+                              <option value="">select condition</option>
+                            </select>
+                            <input type="number" ng-if="condition.name == 'Age'" placeholder="Enter age" class="properties-select" ng-model="ctrl.filterOptions[condition.name].value">
+                            <select ng-if="condition.values != undefined" class="properties-select" ng-model="ctrl.filterOptions[condition.name].value" ng-options="o as o for o in condition.values" required>
+                              <option value="">select value</option>
+                            </select>
+                            <button type="button" class="properties-add-btn" ng-click="ctrl.addCondition(condition.name, ctrl.filterOptions[condition.name], 'or')">Add condition</button>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </li>
+                  <!-- ................................................. -->
+                  <li>
+                    <div class="conditions-footer">
+                      <div class="condtions-footer-btn">
+                        <button type="button" class="footer-btn" ng-click="ctrl.addFilter({filterObj:ctrl.tempConditionObj, filterName:ctrl.filterOptions.filterName});ctrl.clearFilters()"><strong>Save filter</strong></button>
+                      </div>
+                    </div>
+                  </li>
+                  <!-- ................................................. -->
+
+
+                </ul>
+              </li>
+            </div>
+          </form>
+        </div>
+      </ul>
+    </div>
+    <!--
+    <div ng-repeat="user in ctrl.users ">  | searchDevelopersBy:ctrl.filterQuery
+    <div ng-repeat="info in user">
+    {{info}}
+  </div>
+</div>-->

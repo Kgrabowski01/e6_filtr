@@ -1,0 +1,54 @@
+{
+    "conditions": [{
+        "name": "Age",
+        "operators": [
+          "equals", "not equals", "lower then", "greater then"
+        ],
+        "type:": "number"
+    },{
+        "name": "Skill",
+        "operators": [
+          "is", "is not"
+        ],
+        "values": [
+          "junior", "advanced", "senior"
+        ],
+        "type:": "text"
+    },{
+        "name": "Degree",
+        "operators": [
+          "is", "is not"
+        ],
+        "values": [
+          "student", "engineer", "master"
+        ],
+        "type:": "text"
+    },{
+        "name": "Regional team",
+        "operators": [
+          "is", "is not"
+        ],
+        "values": [
+          "GB", "DE", "PL"
+        ],
+        "type:": "text"
+    },{
+        "name": "Languages",
+        "operators": [
+          "is", "is not"
+        ],
+        "values": [
+          "EN", "DE", "PL"
+        ],
+        "type:": "text"
+    },{
+        "name": "Person status",
+        "operators": [
+          "is", "is not"
+        ],
+        "values": [
+          "Available", "Busy", "Vacation", "Not available"
+        ],
+        "type:": "text"
+    }]
+}

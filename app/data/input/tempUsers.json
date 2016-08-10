@@ -1,0 +1,39 @@
+
+{
+  "users": [{
+    "name": "aq",
+    "lastName": "qq",
+    "age": 22,
+    "skill": "junior",
+    "degree": "student",
+    "regionalTeam": "GB",
+    "languages": "EN",
+    "availability": "true",
+    "adress": "adress1",
+    "city":"city1"
+  },
+  {
+    "name": "ww",
+    "lastName": "ww",
+    "age": 33,
+    "skill": "advanced",
+    "degree": "engineer",
+    "regionalTeam": "DE",
+    "languages": "DE",
+    "availability": "true",
+    "adress": "adress2",
+    "city":"city2"
+  },
+  {
+    "name": "ee",
+    "lastName": "ee",
+    "age": 44,
+    "skill": "senior",
+    "degree": "master",
+    "regionalTeam": "PL",
+    "languages": "PL",
+    "availability": "true",
+    "adress": "adress3",
+    "city":"city3"
+    }]
+  }

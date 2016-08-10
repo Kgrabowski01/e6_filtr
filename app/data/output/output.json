@@ -1,0 +1,46 @@
+{
+  "filters":[{
+    "name": "Experienced Technicians West",
+    "conditions": {
+      "and": [{
+        "property": "skill",
+        "operator": "is",
+        "values": ["senior", "junior"]
+        },
+        {
+          "property": "age",
+          "operator": "equals",
+          "values": ["22"]
+          }],
+        "or": [{
+            "property": "age",
+            "operator": "greater then",
+            "values": ["1"]
+            }]
+      }
+      },{
+      "name": "Mid Experienced Technicians East",
+      "conditions": {
+        "and": [{
+          "property": "skill",
+          "operator": "is",
+          "values": ["advanced"]
+          }],
+          "or": [
+
+          ]
+        }
+      },{
+      "name": "Low Experienced Technicians South",
+      "conditions": {
+        "and": [{
+          "property": "skill",
+          "operator": "is",
+          "values": ["junior"]
+          }],
+          "or": [
+
+          ]
+        }
+      }]
+    }
